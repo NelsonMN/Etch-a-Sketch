@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: antiquewhite;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    border: 1px solid black;
+}
+
+.row-square {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    column-gap: 1px;
+}
+
+.column-square {
+    background-color: white;
+    border: 2px solid black;
+    flex: 1;
+    row-gap: 1px;
+    column-gap: 1px;
+}
+
+.column-square:hover {
+    background-color: black;
+}
