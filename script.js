@@ -23,30 +23,22 @@ function createColumns(size) {
 // Grid Deletion
 function deleteGrid(parent) {
     while (parent.firstChild) {
-        parent.removeChild(parent.firstChild)
+        parent.removeChild(parent.firstChild);
     }
 }
 
 
-// Creating a new grid after size input
+// Creating a new grid with size: sizeXsize
 function createGrid(size) {
     createRows(size);
     createColumns(size);
 }
 
-function getGridSize() {
-    size = prompt("What size grid would you like to use?");
-    while (isNaN(size) || size < 2 || size > 50) {
-        size = prompt("What size grid would you like to use?");
-    }
-    createGrid(size);
-};
-
 
 // Reset button
 function reset() {
     const container = document.querySelector('.container');
-    const squares = document.querySelectorAll('.column-square')
+    const squares = document.querySelectorAll('.column-square');
     removeEvents();
     squares.forEach(function(element) {
         element.removeAttribute('style');
@@ -55,10 +47,12 @@ function reset() {
 
 // Erase Button
 function erase() {
+    const squares = document.querySelectorAll('.column-square');
     removeEvents();
-    const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', eraser)})}
+        element.addEventListener('mouseover', eraser);
+    })
+}
 
 
 // Grabbing Random Colours
@@ -76,25 +70,28 @@ function drawBlack() {
     const squares = document.querySelectorAll('.column-square');
     squares.forEach(function(element) {
         element.addEventListener('mouseover', black);
-        })}
+    })
+}
     
 
 // MouseOut Event Listener - Rainbow
 function drawRainbow() {
     removeEvents();
-    const squares = document.querySelectorAll('.column-square')
+    const squares = document.querySelectorAll('.column-square');
     squares.forEach(function(element) {
         element.addEventListener('mouseover', rgba);
-    })}
+    })
+}
 
 
 // MouseOut Event Listener - Greyscale
 function drawGreyscale() {
     removeEvents();
-    const squares = document.querySelectorAll('.column-square')
+    const squares = document.querySelectorAll('.column-square');
     squares.forEach(function(element) {
         element.addEventListener('mouseover', grey);
-    })}
+    })
+}
 
 
 // Button Click Events
@@ -152,19 +149,19 @@ function removeEvents() {
         element.removeEventListener('mouseover', black);
         element.removeEventListener('mouseover', rgba);
         element.removeEventListener('mouseover', grey);
+        element.removeEventListener('mouseover', eraser);
     })
 }
 
 
 // Event Listener Functions
 const eraser = function(event){
-    event.target.style.backgroundColor = '';
-    event.target.style.opacity = '';
+    event.target.removeAttribute('style');
 }
 
 const rgba = function(event) {
-    event.target.style.backgroundColor = randomColour()
-    event.target.style.opacity = ''
+    event.target.style.backgroundColor = randomColour();
+    event.target.style.opacity = '';
 }
 
 const black = function(event) {
@@ -179,12 +176,9 @@ const grey = function(event) {
         opacity = opacity + 0.1;
     }
     event.target.style.opacity = opacity;
-    }
+}
 
 
 // Default Starting Grid
 createRows(10);
 createColumns(10);
-
-
-

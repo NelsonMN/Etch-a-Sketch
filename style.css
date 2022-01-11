@@ -1,3 +1,5 @@
+/* HTML Tag Effects */
+
 a {
     text-decoration: none;
     color: white;
@@ -17,6 +19,8 @@ h1 {
     margin: 40px;
 }
 
+/* Class Effects */
+
 .border {
     width: 700px;
     height: 741px;
@@ -33,7 +37,6 @@ h1 {
     background-color: white;
     border-color: whitesmoke;
     border-radius: 10px;
-    box-shadow: 3px 3px 3px white;
     font-family: 'Chakra Petch', sans-serif;
 }
 
@@ -104,6 +107,8 @@ h1 {
     justify-content: center;
     gap: 50px;
 }
+
+/* Hover Effects */
 
 .column-square:hover {
     background-color: rgb(0, 0, 0);
