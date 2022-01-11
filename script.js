@@ -44,34 +44,20 @@ function getGridSize() {
 
 
 // Reset button
-function reset(element) {
+function reset() {
     const container = document.querySelector('.container');
-    const squares = Array.from(document.querySelectorAll('.column-square'))
-    squares.forEach(function(element) {
-        element.style.backgroundColor = 'white';
-    })
+    removeEvents();
     deleteGrid(container);
     getGridSize();
 }
 
 // Erase Button
 function erase() {
-    const squares = Array.from(document.querySelectorAll('.column-square'))
+    const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
         element.addEventListener('mouseover', () => {
-        element.style.backgroundColor = 'white';}
-            )})
-}
-
-
-// MouseOut Event Listener - Black
-function drawBlack() {
-    const squares = Array.from(document.querySelectorAll('.column-square'))
-    squares.forEach(function(element) {
-        element.addEventListener('mouseover', () => {
-            element.style.backgroundColor = 'black';}
-        )})
-}
+        element.style.backgroundColor = '';
+    })})} 
 
 
 // Grabbing Random Colours
@@ -83,29 +69,83 @@ function randomColour() {
 }
 
 
+// MouseOut Event Listener - Black
+function drawBlack() {
+    removeEvents();
+    const squares = document.querySelectorAll('.column-square')
+    squares.forEach(function(element) {
+        element.addEventListener('mouseover', black)
+        })}
+    
+
 // MouseOut Event Listener - Rainbow
 function drawRainbow() {
-    const squares = Array.from(document.querySelectorAll('.column-square'))
+    removeEvents();
+    const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', () => {
-            element.style.backgroundColor = randomColour();}
-        )})
-}
+        element.addEventListener('mouseover', rgba)
+    })}
 
 
 // MouseOut Event Listener - Greyscale
-function greyScale() {
-    const squares = Array.from(document.querySelectorAll('.column-square'))
+function drawGreyscale() {
+    removeEvents();
+    const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', () => {
-            element.style.backgroundColor = 'black';
-            let opacity = Number(element.style.opacity);
-            opacity += 0.1;
-            element.style.opacity = opacity;
-        })})
+        element.addEventListener('mouseover', grey)
+    })}
+
+
+// Button Click Events
+
+const resetButton = document.getElementById('reset')
+resetButton.addEventListener('click', reset)
+
+const eraseButton = document.getElementById('erase')
+eraseButton.addEventListener('click', erase)
+
+const blackButton = document.getElementById('black')
+blackButton.addEventListener('click', drawBlack)
+
+const rainbowButton = document.getElementById('rainbow')
+rainbowButton.addEventListener('click', drawRainbow)
+
+const greyscaleButton = document.getElementById('greyscale')
+greyscaleButton.addEventListener('click', drawGreyscale)
+
+
+// Remove Event Listeners - 
+function removeEvents(){
+    const squares = document.querySelectorAll('.column-square')
+    squares.forEach(function(element) {
+        element.removeEventListener('mouseover', black)
+        element.removeEventListener('mouseover', rgba)
+        element.removeEventListener('mouseover', grey)
+    })
+}
+
+// Event Listener Functions
+const rgba = function(event) {
+    event.target.style.backgroundColor = randomColour();
+}
+
+const black = function(event) {
+    event.target.style.backgroundColor = 'black';
+}
+
+const grey = function(event) {
+    event.target.style.backgroundColor = 'black';
+    let opacity = Number(event.target.style.opacity);
+    if (opacity < 1){
+        opacity = opacity + 0.1;
+    }
+    event.target.style.opacity = opacity;
     }
 
 
 // Default Starting Grid
 createRows(10);
 createColumns(10);
+
+
+
