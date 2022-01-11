@@ -46,24 +46,25 @@ function getGridSize() {
 // Reset button
 function reset() {
     const container = document.querySelector('.container');
+    const squares = document.querySelectorAll('.column-square')
     removeEvents();
-    deleteGrid(container);
-    getGridSize();
+    squares.forEach(function(element) {
+        element.removeAttribute('style');
+    })
 }
 
 // Erase Button
 function erase() {
+    removeEvents();
     const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', () => {
-        element.style.backgroundColor = '';
-    })})} 
+        element.addEventListener('mouseover', eraser)})}
 
 
 // Grabbing Random Colours
 function randomColour() {
-    const x = Math.round 
-    const y = Math.random
+    const x = Math.round;
+    const y = Math.random;
     const z = 255;
     return 'rgba(' + x(y()*z) + ',' + x(y()*z) + ',' + x(y()*z) + ',' + y().toFixed(1) + ')';
 }
@@ -72,9 +73,9 @@ function randomColour() {
 // MouseOut Event Listener - Black
 function drawBlack() {
     removeEvents();
-    const squares = document.querySelectorAll('.column-square')
+    const squares = document.querySelectorAll('.column-square');
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', black)
+        element.addEventListener('mouseover', black);
         })}
     
 
@@ -83,7 +84,7 @@ function drawRainbow() {
     removeEvents();
     const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', rgba)
+        element.addEventListener('mouseover', rgba);
     })}
 
 
@@ -92,45 +93,83 @@ function drawGreyscale() {
     removeEvents();
     const squares = document.querySelectorAll('.column-square')
     squares.forEach(function(element) {
-        element.addEventListener('mouseover', grey)
+        element.addEventListener('mouseover', grey);
     })}
 
 
 // Button Click Events
 
-const resetButton = document.getElementById('reset')
-resetButton.addEventListener('click', reset)
+const resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', reset);
 
-const eraseButton = document.getElementById('erase')
-eraseButton.addEventListener('click', erase)
+const eraseButton = document.getElementById('erase');
+eraseButton.addEventListener('click', erase);
 
-const blackButton = document.getElementById('black')
-blackButton.addEventListener('click', drawBlack)
+const blackButton = document.getElementById('black');
+blackButton.addEventListener('click', drawBlack);
 
-const rainbowButton = document.getElementById('rainbow')
-rainbowButton.addEventListener('click', drawRainbow)
+const rainbowButton = document.getElementById('rainbow');
+rainbowButton.addEventListener('click', drawRainbow);
 
-const greyscaleButton = document.getElementById('greyscale')
-greyscaleButton.addEventListener('click', drawGreyscale)
+const greyscaleButton = document.getElementById('greyscale');
+greyscaleButton.addEventListener('click', drawGreyscale);
+
+const smallButton = document.getElementById('small');
+smallButton.addEventListener('click', () => {
+    const container = document.querySelector('.container');
+    const size = 10;
+    removeEvents();
+    deleteGrid(container);
+    createRows(size);
+    createColumns(size);
+})
+
+const mediumButton = document.getElementById('medium');
+mediumButton.addEventListener('click', () => {
+    const container = document.querySelector('.container');
+    const size = 25;
+    removeEvents();
+    deleteGrid(container);
+    createRows(size);
+    createColumns(size);
+})
+
+const largeButton = document.getElementById('large');
+largeButton.addEventListener('click', () => {
+    const container = document.querySelector('.container');
+    const size = 50;
+    removeEvents();
+    deleteGrid(container);
+    createRows(size);
+    createColumns(size);
+})
 
 
 // Remove Event Listeners - 
-function removeEvents(){
-    const squares = document.querySelectorAll('.column-square')
+function removeEvents() {
+    const squares = document.querySelectorAll('.column-square');
     squares.forEach(function(element) {
-        element.removeEventListener('mouseover', black)
-        element.removeEventListener('mouseover', rgba)
-        element.removeEventListener('mouseover', grey)
+        element.removeEventListener('mouseover', black);
+        element.removeEventListener('mouseover', rgba);
+        element.removeEventListener('mouseover', grey);
     })
 }
 
+
 // Event Listener Functions
+const eraser = function(event){
+    event.target.style.backgroundColor = '';
+    event.target.style.opacity = '';
+}
+
 const rgba = function(event) {
-    event.target.style.backgroundColor = randomColour();
+    event.target.style.backgroundColor = randomColour()
+    event.target.style.opacity = ''
 }
 
 const black = function(event) {
     event.target.style.backgroundColor = 'black';
+    event.target.style.opacity = '';
 }
 
 const grey = function(event) {

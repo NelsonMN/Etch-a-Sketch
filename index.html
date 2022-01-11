@@ -7,19 +7,31 @@
     <title>Etch-a-Sketch</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Londrina+Sketch&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="title"><h1>Etch-a-Sketch</h1></div>
-    <div class="button-container">
-        <button class="button" id="reset">Clear</button>
-        <button class="button" id="erase">Erase</button>
-        <button class="button" id="black">Black</button>
-        <button class="button" id="rainbow">Rainbow</button>
-        <button class="button" id="greyscale">Greyscale</button>
-    </div>
-    <div class="container-holder"> 
-        <div class="container"></div>
-    </div>   
+    <div class="holder">
+        <div class="border">
+            <div class="button-container">
+                <button class="button" id="reset">Clear</button>
+                <button class="button" id="erase">Erase</button>
+                <button class="button" id="black">Black</button>
+                <button class="button" id="rainbow">Rainbow</button>
+                <button class="button" id="greyscale">Greyscale</button>
+            </div>
+            <div class="container-holder"> 
+                <div class="container"></div>
+            </div>
+            <div class="size-container">
+                <button class="button" id="small" value='10'>10x10</button>
+                <button class="button" id="medium" value='20'>25x25</button>
+                <button class="button" id="large" value='50'>50x50</button>
+            </div> 
+        </div> 
+    </div>     
     <div class="footer"><a href="https://github.com/NelsonMN">Created By: NelsonMM</a></div>
 </body>
 </html>
